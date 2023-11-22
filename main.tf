@@ -7,7 +7,10 @@ resource "azurerm_lb_outbound_rule" "lb_outbound_rule" {
   enable_tcp_reset = each.value.enable_tcp_reset
   allocated_outbound_ports = each.value.allocated_outbound_ports
   idle_timeout_in_minutes = each.value.idle_timeout_in_minutes
-  frontend_ip_configuration {
-    name = each.value.name
+  dynamic "frontend_ip_configuration" {
+    for_each = each.value.frontend_ip_configuration
+    content {
+      name = frontend_ip_configuration.value.name
+    }
   }
 }
