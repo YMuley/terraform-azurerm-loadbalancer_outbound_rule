@@ -10,7 +10,7 @@ variable "load_balancer_output" {
   description = "value"
 }
 
-variable "lb_backend_pool_output" {
+variable "lb_backend_address_pool_output" {
   type = map(any)
   default = {}
   description = "value"
